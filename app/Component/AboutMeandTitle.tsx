@@ -1,197 +1,210 @@
+
+"use client";
+
+import { motion } from "framer-motion";
+
 const AboutMeandTitle = () => {
+  const paragraphs = [
+    "I am a motivated and curious individual who is always eager to learn, grow, and explore new ideas.",
+    "For me, programming is more than just writing code; it is a way to express creativity, solve problems, and turn ideas into real-world experiences.",
+    "As an aspiring Front-End Developer, I enjoy learning new technologies and building modern, interactive, and user-friendly websites.",
+    "I believe that patience, dedication, and continuous practice are essential to achieving long-term goals.",
+    "I also find inspiration in art, nature, and the world around me, which help me approach challenges with creativity and a fresh perspective.",
+    "My goal is to keep improving my skills, gain practical experience, and contribute to meaningful projects that make a difference.",
+    "I value teamwork and collaboration because sharing ideas, learning from others, and supporting one another are important parts of personal and professional growth.",
+  ];
+
   return (
-    <section className="px-6">
-      <div
+    <section
+      id="about"
+      className="px-4 sm:px-6 py-12 md:py-16"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
         className="
-          relative
-          max-w-[1200px]
-          mx-auto
-          my-16
-          mt-30
-          p-8
-          md:p-12
-          rounded-3xl
-          overflow-hidden
-          flex
-          flex-col
-          md:flex-row
-          items-center
-          gap-10
-          bg-gradient-to-br
-          from-[#fffaf3]
-          via-[#fff7ed]
-          to-[#fef3e2]
-          border
-          border-orange-200
-          shadow-xl
-          animate-fadeInUp
+          relative isolate mx-auto max-w-6xl
+          overflow-hidden rounded-[2rem]
+          border border-orange-100
+          bg-gradient-to-br from-white via-orange-50/80 to-amber-100/60
+          p-6 sm:p-8 md:p-12 lg:p-14
+          shadow-[0_20px_70px_-25px_rgba(124,45,18,0.18)]
         "
       >
-        {/* Background Decorations */}
-
+        {/* Background decorations */}
         <div
+          aria-hidden="true"
           className="
-            absolute
-            -top-24
-            -right-24
-            w-64
-            h-64
-            rounded-full
-            bg-orange-300/20
-            blur-3xl
+            pointer-events-none absolute -right-24 -top-24
+            -z-10 h-72 w-72 rounded-full
+            bg-orange-300/20 blur-3xl
           "
         />
 
         <div
+          aria-hidden="true"
           className="
-            absolute
-            -bottom-24
-            -left-24
-            w-64
-            h-64
-            rounded-full
-            bg-red-300/10
-            blur-3xl
+            pointer-events-none absolute -bottom-28 -left-20
+            -z-10 h-72 w-72 rounded-full
+            bg-amber-300/20 blur-3xl
           "
         />
 
-        {/* Image */}
+        <div className="grid items-center gap-10 md:grid-cols-5 md:gap-12 lg:gap-16">
+          {/* Profile image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="relative mx-auto w-full max-w-sm md:col-span-2"
+          >
+            <div
+              aria-hidden="true"
+              className="
+                absolute -inset-3 rounded-[1.7rem]
+                bg-gradient-to-br from-orange-400
+                via-amber-300 to-red-400
+                opacity-30 blur-xl
+              "
+            />
 
-        <div className="relative md:w-1/3 mb-8 md:mb-0">
-          <div
-            className="
-              absolute
-              -inset-2
-              rounded-2xl
-              bg-gradient-to-br
-              from-orange-400
-              via-amber-400
-              to-red-500
-              opacity-30
-              blur-md
-            "
-          />
+            <div className="
+              relative overflow-hidden rounded-[1.5rem]
+              border border-white/80 bg-white p-2
+              shadow-xl
+            ">
+              <img
+                src="/image/AboutMe/shervin.png"
+                alt="Shervin Mohebi"
+                loading="lazy"
+                className="
+                  aspect-[4/5] w-full rounded-[1.1rem]
+                  object-cover object-center
+                  transition-transform duration-700
+                  hover:scale-[1.035]
+                "
+              />
+            </div>
 
-          <img
-            src="/image/AboutMe/AboutMe.png"
-            alt="Profile"
-            className="
-              relative
-              rounded-2xl
-              shadow-2xl
-              w-full
-              object-cover
-              border-4
-              border-white
-              transition-all
-              duration-500
-              hover:scale-[1.03]
-              hover:-rotate-1
-            "
-          />
+            <div className="
+              absolute -bottom-4 left-1/2
+              w-max -translate-x-1/2
+              rounded-full border border-orange-100
+              bg-white/95 px-5 py-2.5
+              text-sm font-semibold tracking-wide
+              text-stone-700 shadow-lg backdrop-blur
+            ">
+              Aspiring Front-End Developer
+            </div>
+          </motion.div>
+
+          {/* About content */}
+          <div className="md:col-span-3">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <span className="
+                mb-3 block text-center
+                text-xs font-bold uppercase
+                tracking-[0.25em] text-orange-700
+                sm:text-sm md:text-left
+              ">
+                Get to know me
+              </span>
+
+              <h2 className="
+                text-center text-4xl font-extrabold
+                tracking-tight text-stone-900
+                sm:text-5xl md:text-left
+                lg:text-6xl
+              ">
+                About{" "}
+                <span className="
+                  bg-gradient-to-r from-orange-600
+                  to-red-500 bg-clip-text text-transparent
+                ">
+                  Me
+                </span>
+              </h2>
+
+              <div className="
+                mx-auto mt-5 h-1.5 w-16
+                rounded-full bg-gradient-to-r
+                from-orange-500 to-red-500
+                md:mx-0
+              " />
+
+              <p className="
+                mt-7 text-center text-base
+                font-normal leading-8 text-stone-600
+                sm:text-[17px] md:text-left
+              ">
+                {paragraphs[0]}
+              </p>
+            </motion.div>
+
+            <div className="mt-5 space-y-4">
+              {paragraphs.slice(1).map((paragraph, index) => (
+                <motion.p
+                  key={paragraph}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: Math.min(index * 0.08, 0.3),
+                  }}
+                  className="
+                    text-center text-base
+                    leading-8 text-stone-600
+                    sm:text-[17px] md:text-left
+                  "
+                >
+                  {paragraph}
+                </motion.p>
+              ))}
+            </div>
+
+            {/* Skills tags */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="
+                mt-8 flex flex-wrap justify-center
+                gap-2 md:justify-start
+              "
+            >
+              {["HTML", "CSS", "JavaScript", "Learning & Growing"].map(
+                (skill) => (
+                  <span
+                    key={skill}
+                    className="
+                      rounded-full border border-orange-200/80
+                      bg-white/80 px-4 py-2
+                      text-xs font-semibold text-stone-700
+                      shadow-sm transition-all duration-300
+                      hover:-translate-y-0.5
+                      hover:border-orange-400
+                      hover:bg-orange-50
+                      sm:text-sm
+                    "
+                  >
+                    {skill}
+                  </span>
+                )
+              )}
+            </motion.div>
+          </div>
         </div>
-
-        {/* Content */}
-
-        <div
-          className="
-            relative
-            md:w-2/3
-            md:pl-10
-            font-sans
-            text-stone-900
-          "
-        >
-          {/* Small title */}
-
-          <span
-            className="
-              block
-              text-center
-              md:text-left
-              text-sm
-              uppercase
-              tracking-[0.3em]
-              font-semibold
-              text-orange-700
-              mb-2
-            "
-          >
-            Get to know me
-          </span>
-
-          {/* Main title */}
-
-          <h2
-            className="
-              text-4xl
-              md:text-5xl
-              text-center
-              md:text-left
-              font-extrabold
-              mb-6
-              tracking-wide
-              text-stone-900
-            "
-          >
-            About Me
-          </h2>
-
-          {/* Orange line */}
-
-          <div
-            className="
-              w-20
-              h-1.5
-              rounded-full
-              bg-gradient-to-r
-              from-orange-500
-              to-red-600
-              mx-auto
-              md:mx-0
-              mb-8
-            "
-          />
-
-          {/* Text */}
-
-          <p
-            className="
-              text-base
-              md:text-lg
-              leading-8
-              text-stone-600
-            "
-          >
-            I am a passionate and driven individual, constantly seeking growth
-            and knowledge.
-            <br />
-            <br />
-            Programming is not just a skill for me; it's a creative outlet and a
-            pathway to solve real-world problems.
-            <br />
-            <br />
-            I firmly believe that dedication and resilience are the keys to
-            turning dreams into reality.
-            <br />
-            <br />
-            Beyond technology, I find inspiration in art and nature, which fuel
-            my creativity and balance.
-            <br />
-            <br />
-            Every day, I strive to refine my skills and push the boundaries of
-            what I can achieve.
-            <br />
-            <br />
-            I envision a future filled with success, innovation, and meaningful
-            collaborations.
-            <br />
-            <br />
-            Teamwork is at the core of my values—I believe that the best results
-            come from working together, supporting and learning from each other.
-          </p>
-        </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

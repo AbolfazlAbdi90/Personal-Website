@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 
 const projects = [
@@ -31,13 +30,6 @@ const projects = [
     description:
       "A simple and practical task management application for organizing daily activities efficiently.",
     url: "https://todolist-abdi-nine.vercel.app/",
-  },
-  {
-    id: 5,
-    title: "Abalon",
-    description:
-      "cloud Company",
-    url: "https://panel.abalon.cloud/",
   },
 ];
 

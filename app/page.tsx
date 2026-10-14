@@ -6,47 +6,55 @@ import AboutMeandTitle from "./Component/AboutMeandTitle";
 import Projects from "./Component/MyProject";
 
 const sentences: string[] = [
-  "I have 1.5 years of experience in Frontend Development👩‍💻",
-  "i love programing ❤️",
-  "I work at the Abalon❤️",
-  "im computer engineer👩‍💻",
+  "Creative Front-End Developer",
+  "i love programing",
+  "Industrial Engineer",
 ];
 
 const Typewriter: React.FC = () => {
-  const [displayText, setDisplayText] = useState<string>("");
-  const [sentenceIndex, setSentenceIndex] = useState<number>(0);
-  const [wordIndex, setWordIndex] = useState<number>(0);
+  const [displayText, setDisplayText] = useState("");
+  const [sentenceIndex, setSentenceIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const words = sentences[sentenceIndex].split(" ");
-    if (wordIndex < words.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText((prev) =>
-          prev ? prev + " " + words[wordIndex] : words[wordIndex],
-        );
-        setWordIndex(wordIndex + 1);
-      }, 400);
-      return () => clearTimeout(timeout);
+    const currentSentence = sentences[sentenceIndex];
+
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting && displayText.length < currentSentence.length) {
+      // نمایش نرم و حرف‌به‌حرف
+      timeout = setTimeout(() => {
+        setDisplayText(currentSentence.slice(0, displayText.length + 1));
+      }, 55);
+    } else if (!isDeleting && displayText.length === currentSentence.length) {
+      // مکث پس از کامل شدن متن
+      timeout = setTimeout(() => {
+        setIsDeleting(true);
+      }, 1800);
+    } else if (isDeleting && displayText.length > 0) {
+      // پاک شدن نرم متن
+      timeout = setTimeout(() => {
+        setDisplayText(displayText.slice(0, -1));
+      }, 25);
     } else {
-      const timeout = setTimeout(() => {
-        setDisplayText("");
-        setWordIndex(0);
-        setSentenceIndex((prev) => (prev + 1) % sentences.length);
-      }, 2000);
-      return () => clearTimeout(timeout);
+      // رفتن به جمله بعدی
+      setIsDeleting(false);
+      setSentenceIndex((prev) => (prev + 1) % sentences.length);
     }
-  }, [wordIndex, sentenceIndex]);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, sentenceIndex]);
 
   return (
     <motion.p
       className="mt-6 text-sm md:text-base text-black min-h-[1.5rem]"
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      key={sentenceIndex}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       {displayText}
-      <span className="animate-blink">|</span>
+      <span className="inline-block ml-1 text-red-800 animate-blink">|</span>
+
       <style jsx>{`
         @keyframes blink {
           0%,
@@ -57,8 +65,9 @@ const Typewriter: React.FC = () => {
             opacity: 0;
           }
         }
+
         .animate-blink {
-          animation: blink 1s step-start infinite;
+          animation: blink 0.8s ease-in-out infinite;
         }
       `}</style>
     </motion.p>
@@ -115,28 +124,21 @@ const AutumnLeaves: React.FC = () => {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
 
-        // اندازه برگ
         this.size = Math.random() * 9 + 7;
 
-        // سرعت پایین آمدن
         this.speedY = Math.random() * 1.2 + 0.6;
 
-        // سرعت اولیه افقی
         this.speedX = (Math.random() - 0.5) * 0.8;
 
-        // زاویه اولیه
         this.rotation = Math.random() * Math.PI * 2;
 
-        // سرعت چرخش
         this.rotationSpeed = (Math.random() - 0.5) * 0.04;
 
-        // برای حرکت موجی برگ
         this.swing = Math.random() * Math.PI * 2;
         this.swingSpeed = Math.random() * 0.02 + 0.01;
 
-        // رنگ‌های پاییزی
         const colors = [
-          "#FACC15", // زرد
+          "#FACC15",
           "#EAB308", // زرد طلایی
           "#F59E0B", // طلایی
           "#D97706", // نارنجی
@@ -364,7 +366,7 @@ const Home: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          AB
+          Sh
         </motion.div>
 
         {/* meno in mobile*/}
@@ -462,9 +464,9 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <img
-              src="/image/AboutMe/AboutMe.png"
+              src="/image/AboutMe/shervin.png"
               alt="Abolfazl Abdi"
-              className="object-contain w-full h-full"
+              className="object-cover w-full h-full"
             />
 
             {/* ring*/}
@@ -501,15 +503,15 @@ const Home: React.FC = () => {
             </h3>
 
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-              Abolfazl <br />
-              <span className="text-black">Abdi</span>
+              shervin <br />
+              <span className="text-black">Mohebi</span>
             </h1>
 
             {/* آicon social media */}
             <div className="flex justify-center md:justify-start space-x-6 mt-6 ">
               {/* Telegram */}
               <a
-                href="https://t.me/AbolfazlAbdi9"
+                href="https://t.me/shervin1383m"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Telegram"
@@ -532,7 +534,7 @@ const Home: React.FC = () => {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/989378546568"
+                href="https://wa.me/989190998826"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -558,7 +560,7 @@ const Home: React.FC = () => {
 
               {/* Instagram */}
               <a
-                href="https://instagram.com/abolfazlabdi418"
+                href="https://instagram.com/mohebi6249"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-purple-700 transition"
@@ -575,38 +577,6 @@ const Home: React.FC = () => {
                   <circle cx="17.5" cy="6.5" r="0.5" />
                 </svg>
               </a>
-
-              {/* GitHub */}
-              <a
-                href="https://github.com/AbolfazlAbdi90"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-purple-700 transition"
-              >
-                <svg
-                  className="w-8 h-8"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.77.6-3.36-1.34-3.36-1.34-.46-1.18-1.12-1.5-1.12-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1 1.53 1 .9 1.53 2.36 1.1 2.94.83.1-.64.35-1.1.63-1.36-2.21-.25-4.54-1.1-4.54-4.91 0-1.1.39-2 1.03-2.7-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.76 1.02a9.48 9.48 0 015.04 0c1.92-1.29 2.76-1.02 2.76-1.02.55 1.4.2 2.44.1 2.7.64.7 1.02 1.6 1.02 2.7 0 3.81-2.34 4.66-4.56 4.91.36.3.68.9.68 1.82v2.7c0 .27.18.58.68.48A10 10 0 0012 2z" />
-                </svg>
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                href="https://www.linkedin.com/in/abolfazl-abdi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-purple-700 transition"
-              >
-                <svg
-                  className="w-8 h-8"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M4.98 3.5A2.5 2.5 0 110 3.5a2.5 2.5 0 014.98 0zM.5 8.98H4.9V22H.5zM8.98 8.98h4.18v1.78h.06a4.6 4.6 0 014.13-2.27c4.42 0 5.24 2.91 5.24 6.69V22H17v-7.59c0-1.81-.03-4.14-2.53-4.14-2.53 0-2.91 1.97-2.91 4.01V22H8.98z" />
-                </svg>
-              </a>
             </div>
 
             <Typewriter />
@@ -616,7 +586,7 @@ const Home: React.FC = () => {
       <div id="About">
         <AboutMe
           introText="I love being a developer!"
-          detailText={`Hello, I’m Abolfazl Abdi, a Front-End Developer passionate about creating modern, responsive, and user-friendly web experiences. I started my programming journey in 2024 and have been continuously improving my skills and exploring new technologies ever since. My main focus is building clean, efficient, and maintainable applications using technologies such as JavaScript, TypeScript, React, Next.js, Vue.js, and Tailwind CSS. I enjoy turning ideas into real-world products and solving problems through code. Beyond development, I’m interested in startups, business ideas, and the process of turning technology into meaningful products. I also enjoy learning, sharing knowledge, and working with others to grow both personally and professionally. I believe that consistency, creativity, and continuous learning are the key to becoming a better developer. My goal is to keep challenging myself, build impactful projects, and grow into a strong Full-Stack Developer.`}
+          detailText={`Hello, I’m Shervin Mohebi, an aspiring Front-End Developer passionate about building modern, responsive, and user-friendly websites. I’m at the beginning of my journey in web development, continuously learning and improving my skills in HTML, CSS, JavaScript, and modern front-end technologies. I enjoy turning creative ideas into interactive web experiences and exploring new ways to make websites more engaging and accessible. I believe that practice, curiosity, and continuous learning are essential for growth in the tech industry. My goal is to strengthen my development skills, work on exciting projects, and gradually grow into a skilled Front-End Developer.`}
         />
       </div>
       {/* <AbalonTeam /> */}
